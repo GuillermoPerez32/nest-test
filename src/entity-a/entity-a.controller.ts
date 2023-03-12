@@ -2,33 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { EntityAService } from './entity-a.service';
 import { CreateEntityADto } from './dto/create-entity-a.dto';
 import { UpdateEntityADto } from './dto/update-entity-a.dto';
+import { Crud,CrudController } from '@nestjsx/crud';
+import { EntityA } from './entities/entity-a.entity';
 
+@Crud({
+  model : {type: EntityA},
+  validation: {
+    forbidUnknownValues: false,
+  },
+})
 @Controller('entity-a')
-export class EntityAController {
-  constructor(private readonly entityAService: EntityAService) {}
-
-  @Post()
-  create(@Body() createEntityADto: CreateEntityADto) {
-    return this.entityAService.create(createEntityADto);
-  }
-
-  @Get()
-  findAll() {
-    return this.entityAService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.entityAService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEntityADto: UpdateEntityADto) {
-    return this.entityAService.update(+id, updateEntityADto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.entityAService.remove(+id);
-  }
+export class EntityAController implements CrudController<EntityA>{
+  constructor(public service: EntityAService) {}
 }
