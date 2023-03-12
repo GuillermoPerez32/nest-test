@@ -17,7 +17,7 @@ export class EntityB {
     @ManyToOne(
         ()=> EntityA,
         (entityA)=> entityA.entitiesB,
-        {onDelete: 'CASCADE'}
+        {onUpdate: 'RESTRICT', onDelete: 'CASCADE'}
     )
     entityA: EntityA;
 }
