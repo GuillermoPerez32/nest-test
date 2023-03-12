@@ -4,8 +4,8 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 @Entity()
 export class EntityB {
 
-    @PrimaryGeneratedColumn()
-    id: string;
+    @PrimaryGeneratedColumn({})
+    id: number;
 
     @Column('text')
     entityBField1:string;

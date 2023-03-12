@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 export class EntityA {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column('text')
     entityAField1:string;
