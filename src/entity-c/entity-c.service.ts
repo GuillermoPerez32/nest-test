@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { CreateEntityCDto } from './dto/create-entity-c.dto';
-import { UpdateEntityCDto } from './dto/update-entity-c.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { EntityC } from './entities/entity-c.entity';
 
 @Injectable()
-export class EntityCService {
-  
+export class EntityCService extends TypeOrmCrudService<EntityC>{
+  constructor( @InjectRepository(EntityC) public repo) {
+    super(repo)
+  }
 }

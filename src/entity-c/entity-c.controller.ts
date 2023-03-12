@@ -1,10 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { Crud,CrudController } from '@nestjsx/crud';
+import { EntityC } from './entities/entity-c.entity';
 import { EntityCService } from './entity-c.service';
-import { CreateEntityCDto } from './dto/create-entity-c.dto';
-import { UpdateEntityCDto } from './dto/update-entity-c.dto';
 
+@Crud({
+  model : {type: EntityC},
+  validation: {
+    forbidUnknownValues: false,
+  },
+  query: {
+    join: {
+      entitiesD : {
+        alias: 'entitiesD',
+        eager: true,
+        allow: []
+      }
+    }
+  },
+})
 @Controller('entity-c')
-export class EntityCController {
-  constructor(private readonly entityCService: EntityCService) {}
-
+export class EntityController implements CrudController<EntityC>{
+  constructor(public service: EntityCService) {}
 }
