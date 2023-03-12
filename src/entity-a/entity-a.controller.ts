@@ -10,6 +10,14 @@ import { EntityA } from './entities/entity-a.entity';
   validation: {
     forbidUnknownValues: false,
   },
+  query: {
+    join: {
+      entitiesB : {
+        alias: 'entitiesB',
+        eager: true
+      }
+    }
+  }
 })
 @Controller('entity-a')
 export class EntityAController implements CrudController<EntityA>{

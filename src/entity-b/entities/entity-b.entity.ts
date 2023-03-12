@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 @Entity()
 export class EntityB {
 
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: string;
 
     @Column('text')
@@ -17,6 +17,7 @@ export class EntityB {
     @ManyToOne(
         ()=> EntityA,
         (entityA)=> entityA.entitiesB,
+        {onDelete: 'CASCADE'}
     )
     entityA: EntityA;
 }
